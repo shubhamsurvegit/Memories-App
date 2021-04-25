@@ -53,7 +53,6 @@ router.post('/google/auth',async (req,res)=>{
     const {username,email,password}=req.body;
     try{
         const existingUser=await User.findOne({email:email})
-        console.log(existingUser)
         if(existingUser){
             const token=jwt.sign({email:existingUser.email,id:existingUser._id},"test",{expiresIn:"1h"});
             return res.status(200).json({result:existingUser,token})

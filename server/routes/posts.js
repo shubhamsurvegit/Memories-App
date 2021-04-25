@@ -37,7 +37,6 @@ router.patch('/posts/:id',auth,(req,res)=>{
 })
 
 router.delete('/posts/:id',auth,(req,res)=>{
-    console.log(req.userId)
     PostMessage.deleteOne({_id:req.params.id})
     .then(()=>{
         res.json({msg:"DELETED"})
@@ -46,8 +45,7 @@ router.delete('/posts/:id',auth,(req,res)=>{
 })
 
 
-router.patch('/posts/like/:id',auth, async (req,res)=>{
-    console.log("ININ")
+router.post('/posts/like/:id', async (req,res)=>{
     const {id}=req.params;
     try{
         // if(!res.userId){
